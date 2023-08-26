@@ -37,13 +37,14 @@ namespace EmpiricalStatistics_Web_App.Models
 
             for (int i = 0; i < empiricalList.Length; i++)
             {
-                empiricalList[i] = random.NextDouble() * (LowerLimit +  (UpperLimit - LowerLimit + 1));
+                empiricalList[i] = Math.Round(random.NextDouble() * (LowerLimit + UpperLimit - LowerLimit + 1),3);
             }
 
         }
 
         public double[] GetArray()
         {
+         
             return empiricalList;
         }
 
