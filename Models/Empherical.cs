@@ -18,6 +18,10 @@ namespace EmpiricalStatistics_Web_App.Models
 
         public int Amount { get; set; }
 
+        public double LowerLimit { get; set; }
+
+        public double UpperLimit { get; set; }
+
        
 
         private double[] empiricalList;
@@ -33,7 +37,7 @@ namespace EmpiricalStatistics_Web_App.Models
 
             for (int i = 0; i < empiricalList.Length; i++)
             {
-                empiricalList[i] = random.Next(-51, 50) / 10.0;
+                empiricalList[i] = random.NextDouble() * (LowerLimit +  (UpperLimit - LowerLimit + 1));
             }
 
         }

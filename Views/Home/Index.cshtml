@@ -1,57 +1,70 @@
 ﻿@model EmpiricalStatistics_Web_App.Models.Empirical
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Empirical Statistics Web App";
 }
 
+<h1>Index</h1>
 
-
-<h4>Empirical Statistics</h4>
+<h4>Empirical</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Amount" class="control-label">Amount of elements</label>
+                <label asp-for="Amount" class="control-label"></label>
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
-            <br />
             <div class="form-group">
-                <label class="control-label">List of values:</label>
-                <br />
-
-
-                @if (ViewBag.list != null && ViewBag.list is double[])
-                {
-                   
-                        foreach (var item in ViewBag.list)
-                    {
-                        <p>@item</p>
-                    }
-
-                }
+                <label asp-for="LowerLimit" class="control-label"></label>
+                <input asp-for="LowerLimit" class="form-control" />
+                <span asp-validation-for="LowerLimit" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="UpperLimit" class="control-label"></label>
+                <input asp-for="UpperLimit" class="form-control" />
+                <span asp-validation-for="UpperLimit" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <label class="control-label">List of values:</label>
             <br />
-           
+
+
+            @if (ViewBag.list != null && ViewBag.list is double[])
+            {
+
+                foreach (var item in ViewBag.list)
+                {
+                    <p>@item</p>
+                }
+
+            }
+
+            <br />
+
             <div class="form-group">
                 <label class="control-label">Mode:</label>
                 <input class="form-control" value="@ViewBag.Mode" />
             </div>
             <br />
 
-<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Swing:</label>
                 <input class="form-control" value="@ViewBag.Swing" />
-</div>
-<br />
-<div class="form-group">
+            </div>
+            <br />
+            <div class="form-group">
                 <label class="control-label">Median:</label>
                 <input class="form-control" value="@ViewBag.Median" />
-</div>
-<br />
+            </div>
+            <br />
             <div class="form-group">
 
                 <label class="control-label">Max value</label>
@@ -62,41 +75,41 @@
                 <label class="control-label">Min value</label>
                 <input class="form-control" value="@ViewBag.Min" />
             </div>
-<br />
-<div class="form-group">
+            <br />
+            <div class="form-group">
                 <label class="control-label">Dispersion</label>
                 <input class="form-control" value="@ViewBag.Dispersion" />
-</div>
-<br />
-<div class="form-group">
+            </div>
+            <br />
+            <div class="form-group">
                 <label class="control-label">Average empirical</label>
                 <input class="form-control" value="@ViewBag.AverageEmpirical" />
-</div>
-<br />
+            </div>
+            <br />
 
-<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Fluctuation</label>
                 <input class="form-control" value="@ViewBag.Fluctuation" />
-</div>
-<br />
+            </div>
+            <br />
 
-<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Asymmetry</label>
                 <input class="form-control" value="@ViewBag.Asymmetry" />
-</div>
-<br />
+            </div>
+            <br />
 
-<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Excess</label>
                 <input class="form-control" value="@ViewBag.Excess" />
-</div>
-<br />
+            </div>
+            <br />
 
-<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Variation</label>
                 <input class="form-control" value="@ViewBag.Variation" />
-</div>
-<br />
+            </div>
+            <br />
             <div class="form-group">
 
                 <input type="submit" value="Calculate" class="btn btn-primary" />
@@ -104,7 +117,7 @@
 
             </div>
 
-          </form>
+        </form>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <canvas id="myChart" height="500" width="500"></canvas>
@@ -146,10 +159,11 @@
             var myChart = new Chart(ctx, config);
         </script>
 
-
-
-       
     </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

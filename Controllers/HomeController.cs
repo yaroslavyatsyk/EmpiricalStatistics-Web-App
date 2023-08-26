@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-
 namespace EmpiricalStatistics_Web_App.Controllers
 {
     public class HomeController : Controller
@@ -14,7 +13,7 @@ namespace EmpiricalStatistics_Web_App.Controllers
             _logger = logger;
         }
 
-        
+
 
         public IActionResult Privacy()
         {
@@ -27,7 +26,7 @@ namespace EmpiricalStatistics_Web_App.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+
         [HttpGet]
 
         public IActionResult Index()
@@ -51,10 +50,10 @@ namespace EmpiricalStatistics_Web_App.Controllers
 
         public IActionResult Index(Empirical model)
         {
-          
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
-         
+
                 model.SetValue();
                 ViewBag.Mode = model.Mode();
                 ViewBag.Median = model.Median();
@@ -73,7 +72,7 @@ namespace EmpiricalStatistics_Web_App.Controllers
                 ViewBag.Min = model.GetArray().Min();
 
                 ViewBag.Freq = model.GetFrequencies();
-                
+
                 return View(model);
 
 
@@ -94,10 +93,6 @@ namespace EmpiricalStatistics_Web_App.Controllers
                 ViewBag.Min = 0;
                 return View();
             }
-           
-
         }
-
-
     }
 }
