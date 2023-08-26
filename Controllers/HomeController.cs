@@ -55,16 +55,18 @@ namespace EmpiricalStatistics_Web_App.Controllers
             {
 
                 model.SetValue();
-                ViewBag.Mode = model.Mode();
-                ViewBag.Median = model.Median();
-                ViewBag.Swing = model.DataSwing();
-                ViewBag.Dispersion = model.Dispercion();
-                ViewBag.AverageEmpirical = model.AverageEmpirical();
+                ViewBag.Mode = Math.Round(model.Mode(),3);
+                ViewBag.Median = Math.Round(model.Median(),3);
 
-                ViewBag.Fluctuation = model.Fluctuation();
-                ViewBag.Asymmetry = model.Asymmetry();
-                ViewBag.Excess = model.Excess();
-                ViewBag.Variation = model.Variation();
+                ViewBag.Swing = Math.Round(model.DataSwing(),3);
+          
+                ViewBag.Dispersion = Math.Round(model.Dispercion(), 3);
+                ViewBag.AverageEmpirical = Math.Round(model.AverageEmpirical(), 3);
+
+                ViewBag.Fluctuation = Math.Round(model.Fluctuation(), 3);
+                ViewBag.Asymmetry = Math.Round(model.Asymmetry(), 3);
+                ViewBag.Excess = Math.Round(model.Excess(), 3);
+                ViewBag.Variation = Math.Round(model.Variation(), 3);
 
                 ViewBag.list = model.GetArray();
 

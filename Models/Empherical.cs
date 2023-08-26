@@ -18,7 +18,15 @@ namespace EmpiricalStatistics_Web_App.Models
 
         public int Amount { get; set; }
 
+
+        [Required(ErrorMessage = "Should be a number")]
+        [Range(-1000, 1000, ErrorMessage = "Should be a number between -1000 and 1000")]
+
         public double LowerLimit { get; set; }
+
+
+        [Required(ErrorMessage = "Should be a number")]
+        [Range(-1000, 1000, ErrorMessage = "Should be a number between -1000 and 1000")]
 
         public double UpperLimit { get; set; }
 
