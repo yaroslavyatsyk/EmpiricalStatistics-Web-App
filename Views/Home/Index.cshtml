@@ -1,0 +1,157 @@
+﻿@model EmpiricalStatistics_Web_App.Models.Empirical
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h4>Empirical Statistics</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Amount of elements</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">List of values:</label>
+                <br />
+
+
+                @if (ViewBag.list != null && ViewBag.list is double[])
+                {
+                   
+                        foreach (var item in ViewBag.list)
+                    {
+                        <p>@item</p>
+                    }
+
+                }
+            </div>
+            
+            <br />
+           
+            <div class="form-group">
+                <label class="control-label">Mode:</label>
+                <input class="form-control" value="@ViewBag.Mode" />
+            </div>
+            <br />
+
+<div class="form-group">
+                <label class="control-label">Swing:</label>
+                <input class="form-control" value="@ViewBag.Swing" />
+</div>
+<br />
+<div class="form-group">
+                <label class="control-label">Median:</label>
+                <input class="form-control" value="@ViewBag.Median" />
+</div>
+<br />
+            <div class="form-group">
+
+                <label class="control-label">Max value</label>
+                <input class="form-control" value="@ViewBag.Max" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">Min value</label>
+                <input class="form-control" value="@ViewBag.Min" />
+            </div>
+<br />
+<div class="form-group">
+                <label class="control-label">Dispersion</label>
+                <input class="form-control" value="@ViewBag.Dispersion" />
+</div>
+<br />
+<div class="form-group">
+                <label class="control-label">Average empirical</label>
+                <input class="form-control" value="@ViewBag.AverageEmpirical" />
+</div>
+<br />
+
+<div class="form-group">
+                <label class="control-label">Fluctuation</label>
+                <input class="form-control" value="@ViewBag.Fluctuation" />
+</div>
+<br />
+
+<div class="form-group">
+                <label class="control-label">Asymmetry</label>
+                <input class="form-control" value="@ViewBag.Asymmetry" />
+</div>
+<br />
+
+<div class="form-group">
+                <label class="control-label">Excess</label>
+                <input class="form-control" value="@ViewBag.Excess" />
+</div>
+<br />
+
+<div class="form-group">
+                <label class="control-label">Variation</label>
+                <input class="form-control" value="@ViewBag.Variation" />
+</div>
+<br />
+            <div class="form-group">
+
+                <input type="submit" value="Calculate" class="btn btn-primary" />
+
+
+            </div>
+
+          </form>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <canvas id="myChart" height="500" width="500"></canvas>
+
+        <script>
+            // Get a reference to the canvas element
+            var ctx = document.getElementById('myChart').getContext('2d');
+
+            // Data for the chart from ViewBag.Freq
+            var frequencies = @Html.Raw(Json.Serialize(ViewBag.Freq));
+
+            // Extract labels and data from the dictionary
+            var labels = Object.keys(frequencies);
+            var data = Object.values(frequencies);
+
+            // Chart configuration
+            var config = {
+                type: 'line', // Choose the chart type (bar, line, pie, etc.)
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            // Create the chart
+            var myChart = new Chart(ctx, config);
+        </script>
+
+
+
+       
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
