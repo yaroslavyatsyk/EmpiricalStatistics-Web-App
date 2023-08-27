@@ -22,13 +22,13 @@ namespace EmpiricalStatistics_Web_App.Models
         [Required(ErrorMessage = "Should be a number")]
         [Range(-1000, 1000, ErrorMessage = "Should be a number between -1000 and 1000")]
 
-        public double LowerLimit { get; set; }
+        public int LowerLimit { get; set; }
 
 
         [Required(ErrorMessage = "Should be a number")]
         [Range(-1000, 1000, ErrorMessage = "Should be a number between -1000 and 1000")]
 
-        public double UpperLimit { get; set; }
+        public int UpperLimit { get; set; }
 
        
 
@@ -45,7 +45,7 @@ namespace EmpiricalStatistics_Web_App.Models
 
             for (int i = 0; i < empiricalList.Length; i++)
             {
-                empiricalList[i] = Math.Round(random.NextDouble() * (LowerLimit + UpperLimit - LowerLimit + 1),3);
+                empiricalList[i] = random.Next(LowerLimit, UpperLimit + 1) / 10.0;
             }
 
         }
