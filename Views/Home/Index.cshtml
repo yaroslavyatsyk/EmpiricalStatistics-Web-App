@@ -46,13 +46,14 @@
 
                     if (count == 9)
                     {
-count = 0;
                         <br />
+
+count = 0;
                         
                     }
                   
                         @item 
-                        @Html.Raw(" , ")                      
+                        @Html.Raw(" ")                      
                         count++;
                 }
 
@@ -126,7 +127,7 @@ count = 0;
         </form>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <canvas id="myChart" height="500" width="500"></canvas>
+        <canvas id="myChart" height="5000" width="5000"></canvas>
 
         <script>
             // Get a reference to the canvas element
