@@ -44,7 +44,7 @@
                 foreach (var item in ViewBag.list)
                 {
 
-                    if (count == 10)
+                    if (count == 9)
                     {
 count = 0;
                         <br />
@@ -52,7 +52,7 @@ count = 0;
                     }
                   
                         @item 
-                        @Html.Raw(" ")                      
+                        @Html.Raw(" , ")                      
                         count++;
                 }
 
