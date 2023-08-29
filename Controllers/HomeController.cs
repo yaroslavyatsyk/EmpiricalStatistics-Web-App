@@ -95,6 +95,13 @@ namespace EmpiricalStatistics_Web_App.Controllers
                 ViewBag.Min = 0;
                 return View();
             }
+
+
+            
+        }
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }
