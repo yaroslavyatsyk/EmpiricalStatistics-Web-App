@@ -18,16 +18,16 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LowerLimit" class="control-label">Lower Limit</label>
-                <input asp-for="LowerLimit" class="form-control" />
-                <span asp-validation-for="LowerLimit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="UpperLimit" class="control-label">Upper Limit</label>
                 <input asp-for="UpperLimit" class="form-control" />
                 <span asp-validation-for="UpperLimit" class="text-danger"></span>
             </div>
-            <br /><br />
+            <div class="form-group">
+                <label asp-for="LowerLimit" class="control-label">Lower Limit</label>
+                <input asp-for="LowerLimit" class="form-control" />
+                <span asp-validation-for="LowerLimit" class="text-danger"></span>
+            </div>
+            <br />
 
             <div class="form-group">
                 <input type="submit" value="Calculate" class="btn btn-primary" />
@@ -63,69 +63,74 @@ count = 0;
 
             <div class="form-group">
                 <label class="control-label">Mode:</label>
-                <input class="form-control" value="@ViewBag.Mode" />
+                <input class="form-control" readonly  value="@ViewBag.Mode" />
             </div>
             <br />
 
             <div class="form-group">
                 <label class="control-label">Swing:</label>
-                <input class="form-control" value="@ViewBag.Swing" />
+                <input class="form-control" readonly  value="@ViewBag.Swing" />
             </div>
             <br />
             <div class="form-group">
                 <label class="control-label">Median:</label>
-                <input class="form-control" value="@ViewBag.Median" />
+                <input class="form-control" readonly value="@ViewBag.Median" />
             </div>
             <br />
             <div class="form-group">
 
                 <label class="control-label">Max value</label>
-                <input class="form-control" value="@ViewBag.Max" />
+                <input class="form-control" readonly value="@ViewBag.Max" />
             </div>
             <br />
             <div class="form-group">
                 <label class="control-label">Min value</label>
-                <input class="form-control" value="@ViewBag.Min" />
+                <input class="form-control" readonly value="@ViewBag.Min" />
             </div>
             <br />
             <div class="form-group">
                 <label class="control-label">Dispersion</label>
-                <input class="form-control" value="@ViewBag.Dispersion" />
+                <input class="form-control" readonly value="@ViewBag.Dispersion" />
             </div>
             <br />
             <div class="form-group">
                 <label class="control-label">Average empirical</label>
-                <input class="form-control" value="@ViewBag.AverageEmpirical" />
+                <input class="form-control" readonly value="@ViewBag.AverageEmpirical" />
             </div>
             <br />
 
             <div class="form-group">
                 <label class="control-label">Fluctuation</label>
-                <input class="form-control" value="@ViewBag.Fluctuation" />
+                <input class="form-control" readonly value="@ViewBag.Fluctuation" />
             </div>
             <br />
 
             <div class="form-group">
                 <label class="control-label">Asymmetry</label>
-                <input class="form-control" value="@ViewBag.Asymmetry" />
+                <input class="form-control" readonly value="@ViewBag.Asymmetry" />
             </div>
             <br />
 
             <div class="form-group">
                 <label class="control-label">Excess</label>
-                <input class="form-control" value="@ViewBag.Excess" />
+                <input class="form-control"  readonly value="@ViewBag.Excess" />
             </div>
             <br />
 
             <div class="form-group">
                 <label class="control-label">Variation</label>
-                <input class="form-control" value="@ViewBag.Variation" />
+                <input class="form-control"  readonly value="@ViewBag.Variation" />
             </div>
             <br />
             
 
         </form>
+        
+
+    </div>
+    <div class="col-md-4">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
         <canvas id="myChart" height="10000" width="10000"></canvas>
 
@@ -140,26 +145,50 @@ count = 0;
             var labels = Object.keys(frequencies);
             var data = Object.values(frequencies);
 
+            labels.sort();
+
             // Chart configuration
             var config = {
-                type: 'line', // Choose the chart type (bar, line, pie, etc.)
+                type: 'bar', // Choose the chart type (bar, line, pie, etc.)
                 data: {
                     labels: labels,
-                    datasets: [{
-                        label: 'Frequency',
+
+datasets: [{
+                        label: '',
                         data: data,
                         backgroundColor: 'blue',
-                        borderColor: 'green',
-                        borderWidth: 2
+                        borderColor: 'blue',
+                        borderWidth: 1
 
                     }]
                 },
                 options: {
+
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Frequency of values'
+                        }
+                    },
+
                     scales: {
+                        x: {
+                           display: true,
+                            title: {
+                                display: true,
+                                text: 'Values'
+                            }
+                        },
                         y: {
+                            display: true,
+title: {
+                                display: true,
+                                text: 'Frequency'
+                            },
                             beginAtZero: false
                         }
-                       
+                        
+
                     }
                 }
             };
@@ -167,7 +196,6 @@ count = 0;
             // Create the chart
             var myChart = new Chart(ctx, config);
         </script>
-
     </div>
 </div>
 
