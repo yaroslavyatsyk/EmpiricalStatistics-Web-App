@@ -142,8 +142,8 @@ count = 0;
             var frequencies = @Html.Raw(Json.Serialize(ViewBag.Freq));
 
             // Extract labels and data from the dictionary
-            var labels = Object.keys(frequencies).sort();
-            var data = Object.values(frequencies).sort();
+            var labels = Object.keys(frequencies);
+            var data = Object.values(frequencies);
 
           
 
@@ -185,7 +185,7 @@ title: {
                                 display: true,
                                 text: 'Frequency'
                             },
-                            beginAtZero: false
+                            beginAtZero: true
                         }
                         
 
